@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+use Log;
+
 
 class TestBatch extends Command
 {
@@ -11,14 +15,14 @@ class TestBatch extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'batch:test';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'test batch';
 
     /**
      * Create a new command instance.
@@ -37,6 +41,10 @@ class TestBatch extends Command
      */
     public function handle()
     {
-        return 0;
+        $message =
+        [
+          'Timing' => "TestBatch.handle",
+        ];
+      Log::notice($message);
     }
 }

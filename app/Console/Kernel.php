@@ -5,6 +5,9 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use Log;
+use App\Console\Commands\TestBatch;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -14,6 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        TestBatch::class,
     ];
 
     /**
@@ -24,7 +28,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $message =
+        [
+          'Timing' => "Kernel.schedule",
+        ];
+          Log::notice($message);
         // $schedule->command('inspire')->hourly();
+        $schedule->command('batch:test')->everyMinute();
     }
 
     /**
